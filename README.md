@@ -60,6 +60,20 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+4. Upload reference files to central S3 bucket:
+<details>
+<summary>ℹ️ Info about central_account_id</summary>
+The {central_account_id} in the commands below refers to your AWS account ID that will serve as the central repository. For example, if your central account ID is '123456789012', the bucket name would be 'postgres-cw-metrics-central-123456789012'.
+</details>
+
+```bash
+# For the JSON file:
+aws s3 cp ./reference/instance_specifications.json s3://postgres-cw-metrics-central-{central_account_id}/reference/instance_specifications.json
+
+# For the Excel file:
+aws s3 cp ./reference/rds_aurora_pricing.xlsx s3://postgres-cw-metrics-central-{central_account_id}/reference/rds_aurora_pricing.xlsx
+```
+
 ### Basic Usage
 1. Set up the central AWS account:
 ```bash
